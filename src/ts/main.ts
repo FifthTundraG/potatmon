@@ -1,5 +1,11 @@
 console.log("turn based game yay! totally not pokemon but without the adventure part")
 
+function clone<T>(instance: T): T {
+    const copy = new (instance.constructor as { new (): T })();
+    Object.assign(copy, instance);
+    return copy;
+}
+
 //potatomanses ------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Potatmon {
@@ -18,10 +24,10 @@ class Potatmon {
     
     attackPotatmon(potatmon: Potatmon) {
     	potatmon.hp -= this.attack/potatmon.defense;
-    	document.getElementById("enemyHealth").innerText = potatmon.hp as unknown as string;
 		if (potatmon.hp < 0) {
 			potatmon.hp = 0;
 		}
+		document.getElementById("enemyHealth").innerText = potatmon.hp as unknown as string;
 //     	if (potatmon.hp*potatmon.defense > this.attack) {
 //
 //         	eactivePotatmon.hp -= activePotatmon.attack/eactivePotatmon.defense;
@@ -87,6 +93,29 @@ class GUI {
 	}
 }
 
+class PotatmonData {
+	static readonly POTATMONS = [
+		new Potatmon("Watermander", 10, 4, 1),
+		new Potatmon("Arsosaur", 8, 6, 1),
+		new Potatmon("Grasle", 12, 3, 2),
+		new Potatmon("Ratatatatata", 12, 4, 1)
+	]
+
+	static getPotatmonFromName(name: string): Potatmon {
+		for (let i in PotatmonData.POTATMONS) {
+			if (PotatmonData.POTATMONS[i].name.toLowerCase() === name.toLowerCase()) {
+				return clone(PotatmonData.POTATMONS[i]);
+			}
+		}
+		throw new Error("Unable to find potatmon from name: "+name);
+	}
+
+	static getPotatmonById(id: number): Potatmon {
+		return PotatmonData.POTATMONS[id];
+		// todo: add checks for if it exists or not
+	}
+}
+
 function reloadActivePotatmonInfo(): void {
 	// our potatmon
 	document.getElementById("playerHealth").innerText = player.activePotatmon.hp as unknown as string;
@@ -97,17 +126,12 @@ function reloadActivePotatmonInfo(): void {
 	document.getElementById("enemyActivePotatmon").innerText = enemy.activePotatmon.name;
 }
 
-const watermander = new Potatmon("Watermander", 10, 4, 1)
-const arsosaur = new Potatmon("Arsosaur", 8, 6, 1)
-const grasle = new Potatmon("Grasle", 12, 3, 2)
-const ratatatatata = new Potatmon("Ratatatatata", 12, 4, 1)
-
-let bench: Potatmon[] = [watermander, grasle, arsosaur]
+let bench: Potatmon[] = [PotatmonData.getPotatmonFromName("watermander"), PotatmonData.getPotatmonFromName("grasle"), PotatmonData.getPotatmonFromName("arsosaur")]
 
 const player = new Player(bench);
 
 //enemy stuffs ------------------------------------------------------------------------------------------------------------------------------------------------
-const enemy = new Enemy("BOB.", [ratatatatata, grasle]);
+const enemy = new Enemy("BOB.", [PotatmonData.getPotatmonFromName("ratatatatata"), PotatmonData.getPotatmonFromName("grasle")]);
 
 reloadActivePotatmonInfo();
 
