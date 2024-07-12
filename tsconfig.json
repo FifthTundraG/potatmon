@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2022",
+    "outDir": "src/js",
+    "rootDir": "src/ts",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": false
+  },
+  "include": ["src/ts/**/*"]
+}
