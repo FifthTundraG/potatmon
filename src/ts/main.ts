@@ -2,6 +2,7 @@ import Potatmon from "./Potatmon.js";
 import {Player, Enemy} from "./Trainer.js";
 import PotatmonData from "./PotatmonData.js";
 import GUI from "./GUI.js";
+import EventTrigger from "./EventTrigger.js";
 
 console.log("turn based game yay! totally not pokemon but without the adventure part");
 
@@ -17,15 +18,16 @@ function reloadActivePotatmonInfo(): void {
 
 let bench: Potatmon[] = [PotatmonData.getPotatmonFromName("watermander"), PotatmonData.getPotatmonFromName("grasle"), PotatmonData.getPotatmonFromName("arsosaur")]
 
-const player = new Player(bench);
+const player: Player = new Player(bench);
 
 //enemy stuffs ------------------------------------------------------------------------------------------------------------------------------------------------
-const enemy = new Enemy("BOB.", [PotatmonData.getPotatmonFromName("ratatatatata"), PotatmonData.getPotatmonFromName("grasle")]);
+const enemy: Enemy = new Enemy("BOB.", [PotatmonData.getPotatmonFromName("ratatatatata"), PotatmonData.getPotatmonFromName("grasle")]);
 
 reloadActivePotatmonInfo();
 
 document.getElementById("test").addEventListener("click", () => {
-    console.log(player.activePotatmon);
+//     console.log(player.activePotatmon);
+	EventTrigger.triggerEvent(EventTrigger.events.encounter,enemy.name);
 });
 //attack ----------------------------------------------------------------------------------------------------------------------------------------------------------
 

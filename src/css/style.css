@@ -1,3 +1,13 @@
 .gui {
    display: none;
 }
+
+.encounter-ribbon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100lw;
+    height: 50px;
+    background-color: red;
+    color: white; /* for the text inside of it */
+}
