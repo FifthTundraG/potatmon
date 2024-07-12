@@ -73,6 +73,20 @@ class Enemy extends Trainer {
 	}
 }
 
+class GUI {
+	static guis: Record<string, HTMLDivElement> = {
+		battle: document.getElementById("GUI_Attack") as HTMLDivElement
+	}
+
+	static currentGui: HTMLDivElement = GUI.guis.battle;
+
+	static switchGui(gui: HTMLDivElement) {
+		GUI.currentGui.style.display = "none";
+		GUI.currentGui = gui;
+		gui.style.display = "block";
+	}
+}
+
 function reloadActivePotatmonInfo(): void {
 	// our potatmon
 	document.getElementById("playerHealth").innerText = player.activePotatmon.hp as unknown as string;
@@ -152,3 +166,5 @@ document.getElementById("b3").addEventListener("click", () => {
     reloadActivePotatmonInfo();
 });
 updateBenchButtons();
+
+GUI.switchGui(GUI.guis.battle);

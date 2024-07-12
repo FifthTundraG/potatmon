@@ -8,6 +8,5 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "sourceMap": false
-  },
-  "include": ["src/ts/**/*"]
+  }
 }
