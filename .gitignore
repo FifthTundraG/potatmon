@@ -1,5 +1,5 @@
 # our stuff
-src/js/**/*
+src/js
 
 # stuff from kate
 .*.kate-swp
