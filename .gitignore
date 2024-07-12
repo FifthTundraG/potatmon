@@ -1,3 +1,10 @@
+# our stuff
+src/js/**/*
+
+# stuff from kate
+.*.kate-swp
+.swp.*
+
 # Logs
 logs
 *.log
