@@ -1,15 +1,37 @@
 export default class Potatmon {
 	name: string;
 	hp: number;
-	maxHealth: number;
+	maxHp: number;
 	attack: number;
 	defense: number;
-    constructor(name,hp,attack,defense) {
+	level: number;
+	// the amount of xp required to advance to the next level
+	xpRequired: number;
+	// the amount of progress in the current level
+	currentXp: number;
+	// og values for HP and such
+	originalHp: number;
+	originalDefense: number;
+	originalAttack: number;
+    constructor(name: string, hp: number, attack: number, defense: number) {
         this.name = name;
         this.hp = hp;
-        this.maxHealth = hp;
         this.attack = attack;
         this.defense = defense;
+        this.maxHp = hp;
+        this.level = 1;
+        this.xpRequired = 10; //!
+        this.currentXp = 0;
+        this.originalHp = hp;
+        this.originalDefense = defense;
+        this.originalAttack = attack;
+    }
+
+    setLevel(level: number) {
+		// additional logic will be here
+		this.level = level;
+
+		return this;
     }
 
     attackPotatmon(potatmon: Potatmon) {
