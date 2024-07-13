@@ -13,8 +13,18 @@ export default class Trainer {
 }
 
 export class Player extends Trainer {
+	pc: Potatmon[];
 	constructor(bench: Potatmon[]) {
 		super("You", bench);
+
+		this.pc = [];
+	}
+
+	addPC(potatmon: Potatmon) {
+		this.pc.append(potatmon);
+	}
+	removePC() {
+
 	}
 }
 

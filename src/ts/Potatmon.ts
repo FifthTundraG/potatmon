@@ -36,7 +36,8 @@ export default class Potatmon {
 
     attackPotatmon(potatmon: Potatmon) {
     	potatmon.hp -= this.attack/potatmon.defense;
-		if (potatmon.hp < 0) {
+		if (potatmon.hp <= 0) {
+			this.gainExperience(3);
 			potatmon.hp = 0;
 		}
 		document.getElementById("enemyHealth").innerText = potatmon.hp as unknown as string;
@@ -64,5 +65,20 @@ export default class Potatmon {
 //         	document.getElementById("win").innerText = "You Won!"
 //
 //     	}
+    }
+
+	gainExperience(exp: number) {
+		this.currentXp += exp;
+		this.calculateExperience();
+	}
+
+    calculateExperience() {
+		if (this.currentXp >= this.xpRequired) {
+			this.currentXp = 0;
+			this.level += 1;
+			this.xpRequired = this.xpRequired*1.1;
+			this.maxHp += Math.round(this.level*this.maxHp*0.1);
+			this.attack += Math.round(this.level*this.attack*0.1);
+		}
     }
 }

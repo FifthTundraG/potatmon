@@ -16,7 +16,7 @@ function reloadActivePotatmonInfo(): void {
 	document.getElementById("enemyActivePotatmon").innerText = enemy.activePotatmon.name;
 }
 
-let bench: Potatmon[] = [PotatmonData.getPotatmonFromName("watermander").setLevel(12), PotatmonData.getPotatmonFromName("grasle"), PotatmonData.getPotatmonFromName("arsosaur")];
+let bench: Potatmon[] = [PotatmonData.getPotatmonFromName("watermander"), PotatmonData.getPotatmonFromName("grasle"), PotatmonData.getPotatmonFromName("arsosaur")];
 
 const player: Player = new Player(bench);
 
