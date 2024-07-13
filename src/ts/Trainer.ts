@@ -21,7 +21,7 @@ export class Player extends Trainer {
 	}
 
 	addPC(potatmon: Potatmon) {
-		this.pc.append(potatmon);
+		this.pc.push(potatmon);
 	}
 	removePC() {
 
